@@ -28,7 +28,7 @@
                 newA.innerText = countryRankDiv.innerText;
                 countryRankDiv.innerText = '';
                 countryRankDiv.appendChild(newA);
-                countryRankDiv.setAttribute('data-html-title', 'Show country ranking around me');
+                countryRankDiv.setAttribute('data-html-title', 'Show country ranking page around this user');
                 countryRankDiv.setAttribute('data-hasqtip', 'qtip-1');
                 countryRankDiv.setAttribute('aria-describedby', 'qtip-1');
             }
