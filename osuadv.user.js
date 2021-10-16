@@ -14,7 +14,7 @@
 
     waitForKeyElements('.value-display__value', () => {
         // User page
-        if(/^\/users\/\d+$/.test(location.pathname)) {
+        if(/^\/users\/.+/.test(location.pathname)) {
             // Add "Show country ranking around me" feature
             var countryRankUrl = document.getElementsByClassName('profile-info__flag--country')[0].href;
             var countryRankDiv = Array.from(document.getElementsByClassName('value-display__value')).filter(elm => elm.offsetHeight != 0 && /^#[0-9,]+$/.test(elm.innerText))[1].children[0];
