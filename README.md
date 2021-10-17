@@ -3,6 +3,7 @@ Userscript for osu! web
 
 ## Features
  - Jump to world/country ranking page around user by clicking user page's country ranking
+ - Search beatmap's title or artist on search engine
  - TBA
 
 ## Installation
