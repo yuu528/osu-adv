@@ -15,7 +15,7 @@
     var runCount = 0;
     waitForKeyElements('.value-display__value', () => {
         // User page
-        if(/^\/users\/.+/.test(location.pathname)) {
+        if(/^\/users\//.test(location.pathname)) {
             // Add "Show world/country ranking around user" feature
             var elemList = Array.from(document.getElementsByClassName('value-display__value')).filter(elm => elm.offsetHeight != 0 && /^#[0-9,]+$/.test(elm.innerText));
             // Wait for page loading
