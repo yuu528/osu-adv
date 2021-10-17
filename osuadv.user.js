@@ -56,11 +56,11 @@
                 afterStatDiv.before(newDiv);
                 newDiv.children[0].children[0].innerHTML = '';
                 [
-                    ['Google Background', 'https://images.google.com/searchbyimage?image_url=%s', bgUrl, 'background', 'Google Image Search'],
-                    ['Ascii2D Background', 'https://ascii2d.net/search/url/%s?type=color', bgUrl, 'background', 'Ascii2D Image Search'],
-                    ['Google Title', 'https://google.com/search?q=%s', songTitle, 'title', 'Google'],
-                    ['YouTube Title', 'https://youtube.com/results?search_query=%s', songTitle, 'title', 'YouTube'],
-                    ['Google Artist', 'https://google.com/search?q=%s', artistName, 'artist', 'Google']
+                    ['Google - Background', 'https://images.google.com/searchbyimage?image_url=%s', bgUrl, 'background', 'Google Image Search'],
+                    ['Ascii2D - Background', 'https://ascii2d.net/search/url/%s?type=color', bgUrl, 'background', 'Ascii2D Image Search'],
+                    ['Google - Title', 'https://google.com/search?q=%s', songTitle, 'title', 'Google'],
+                    ['YouTube - Title', 'https://youtube.com/results?search_query=%s', songTitle, 'title', 'YouTube'],
+                    ['Google - Artist', 'https://google.com/search?q=%s', artistName, 'artist', 'Google']
                 ].forEach(data => {
                     let newTr = document.createElement('tr');
                     let newTh = document.createElement('th');
