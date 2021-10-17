@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         osu!adv
 // @namespace    https://yuu-g.net/
-// @version      0.1
+// @version      0.2
 // @description  Add new features to osu! website.
 // @author       Yuu528
 // @match        https://osu.ppy.sh/*
