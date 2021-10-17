@@ -12,14 +12,16 @@
 (function() {
     'use strict';
 
+    var runCount;
     if(/^\/users\//.test(location.pathname)) { // User page
-        var runCount = 0;
+        runCount = 0;
         waitForKeyElements('.value-display__value', () => {
             // Add "Show world/country ranking around user" feature
             var elemList = Array.from(document.getElementsByClassName('value-display__value')).filter(elm => elm.offsetHeight != 0 && /^#[0-9,]+$/.test(elm.innerText));
             // Wait for page loading
             if(elemList.length == 2 && runCount == 0) {
                 runCount++;
+                console.log(runCount);
                 [
                     ['world', 'https://osu.ppy.sh/rankings/osu/performance?'],
                     ['country', document.getElementsByClassName('profile-info__flag--country')[0].href]
@@ -40,6 +42,45 @@
                     }
                 });
             }
-        }, false);
+        });
+    } else if(/^\/beatmapsets\//.test(location.pathname)) {
+        runCount = 0;
+        waitForKeyElements('.beatmapset-stats__row--advanced', () => {
+            // 'search on' feature
+            if(runCount == 0) {
+                runCount++;
+                let afterStatDiv = document.getElementsByClassName('beatmapset-stats__row--advanced')[0];
+                var newDiv = afterStatDiv.cloneNode(true);
+                let bgUrl = document.getElementsByClassName('beatmapset-header__content')[0].style.backgroundImage.replace(/^url\(\"([^"]+)\"\)$/, '$1');
+                let elemList = document.getElementsByClassName('beatmapset-header__details-text-link')
+                let songTitle = elemList[0].innerText;
+                let artistName = elemList[1].innerText;
+                afterStatDiv.before(newDiv);
+                newDiv.children[0].children[0].innerHTML = '';
+                [
+                    ['Google Background', 'https://images.google.com/searchbyimage?image_url=%s', bgUrl, 'background', 'Google Image Search'],
+                    ['Ascii2D Background', 'https://ascii2d.net/search/url/%s?type=color', bgUrl, 'background', 'Ascii2D Image Search'],
+                    ['Google Title', 'https://google.com/search?q=%s', songTitle, 'title', 'Google'],
+                    ['YouTube Title', 'https://youtube.com/results?search_query=%s', songTitle, 'title', 'YouTube'],
+                    ['Google Artist', 'https://google.com/search?q=%s', artistName, 'artist', 'Google'],
+                    0
+                ].forEach(data => {
+                    let newTr = document.createElement('tr');
+                    let newTh = document.createElement('th');
+                    let newTd = document.createElement('td');
+                    let newA = document.createElement('a');
+                    newTh.classList.add('fas', 'fa-search');
+                    newTd.classList.add('beatmap-stats-table__label');
+                    newA.setAttribute('title', 'Search ' + data[3] + ' on ' + data[4]);
+                    newA.setAttribute('href', data[1].replace('%s', data[2]));
+                    newA.style.color = '#fff';
+                    newA.innerText = data[0];
+                    newTd.appendChild(newA);
+                    newTr.appendChild(newTh);
+                    newTr.appendChild(newTd);
+                    newDiv.children[0].children[0].appendChild(newTr);
+                });
+            }
+        });
     }
 })();
