@@ -12,13 +12,15 @@
 (function() {
     'use strict';
 
+    var runCount = 0;
     waitForKeyElements('.value-display__value', () => {
         // User page
         if(/^\/users\/.+/.test(location.pathname)) {
             // Add "Show world/country ranking around user" feature
             var elemList = Array.from(document.getElementsByClassName('value-display__value')).filter(elm => elm.offsetHeight != 0 && /^#[0-9,]+$/.test(elm.innerText));
             // Wait for page loading
-            if(elemList.length == 2) {
+            if(elemList.length == 2 && runCount == 0) {
+                runCount++;
                 [
                     ['world', 'https://osu.ppy.sh/rankings/osu/performance?'],
                     ['country', document.getElementsByClassName('profile-info__flag--country')[0].href]
