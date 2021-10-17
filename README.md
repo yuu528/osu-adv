@@ -2,7 +2,7 @@
 Userscript for osu! web
 
 ## Features
- - Jump to country ranking page around user by clicking user page's country ranking
+ - Jump to world/country ranking page around user by clicking user page's country ranking
  - TBA
 
 ## Installation
