@@ -22,7 +22,6 @@
                 var countryRankDiv = elemList[1].children[0];
                 var countryRankUrl = document.getElementsByClassName('profile-info__flag--country')[0].href;
                 var countryRank = parseInt(countryRankDiv.innerText.replace(/[#,]/g, ''));
-                console.log(countryRankDiv);
                 if(countryRank <= 10000) {
                     let rankPage = Math.ceil(countryRank / 50);
                     let newA = document.createElement('a');
