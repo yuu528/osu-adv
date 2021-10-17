@@ -15,25 +15,29 @@
     waitForKeyElements('.value-display__value', () => {
         // User page
         if(/^\/users\/.+/.test(location.pathname)) {
-            // Add "Show country ranking around me" feature
+            // Add "Show world/country ranking around user" feature
             var elemList = Array.from(document.getElementsByClassName('value-display__value')).filter(elm => elm.offsetHeight != 0 && /^#[0-9,]+$/.test(elm.innerText));
             // Wait for page loading
             if(elemList.length == 2) {
-                var countryRankDiv = elemList[1].children[0];
-                var countryRankUrl = document.getElementsByClassName('profile-info__flag--country')[0].href;
-                var countryRank = parseInt(countryRankDiv.innerText.replace(/[#,]/g, ''));
-                if(countryRank <= 10000) {
-                    let rankPage = Math.ceil(countryRank / 50);
-                    let newA = document.createElement('a');
-                    newA.setAttribute('href', countryRankUrl + '&page=' + rankPage);
-                    newA.style.color = '#fff';
-                    newA.innerText = countryRankDiv.innerText;
-                    countryRankDiv.innerText = '';
-                    countryRankDiv.appendChild(newA);
-                    countryRankDiv.setAttribute('data-html-title', 'Show country ranking page around this user');
-                    countryRankDiv.setAttribute('data-hasqtip', 'qtip-1');
-                    countryRankDiv.setAttribute('aria-describedby', 'qtip-1');
-                }
+                [
+                    ['world', 'https://osu.ppy.sh/rankings/osu/performance?'],
+                    ['country', document.getElementsByClassName('profile-info__flag--country')[0].href]
+                ].forEach((data, key) => {
+                    var rankDiv = elemList[key].children[0];
+                    var rank = parseInt(rankDiv.innerText.replace(/[#,]/g, ''));
+                    if(rank <= 10000) {
+                        let rankPage = Math.ceil(rank / 50);
+                        let newA = document.createElement('a');
+                        newA.setAttribute('href', data[1] + '&page=' + rankPage);
+                        newA.style.color = '#fff';
+                        newA.innerText = rankDiv.innerText;
+                        rankDiv.innerText = '';
+                        rankDiv.appendChild(newA);
+                        rankDiv.setAttribute('data-html-title', 'Show ' + data[0] + ' ranking page around this user');
+                        rankDiv.setAttribute('data-hasqtip', 'qtip-1');
+                        rankDiv.setAttribute('aria-describedby', 'qtip-1');
+                    }
+                });
             }
         }
     }, false);
