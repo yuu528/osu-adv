@@ -12,7 +12,7 @@
 (function() {
     'use strict';
 
-    document.addEventListener('turbolinks:load', () => {
+    var mainFunc = () => {
         console.log(location.pathname);
         var runCount;
         if(/^\/users\//.test(location.pathname)) { // User page
@@ -82,5 +82,8 @@
                 }
             });
         }
-    });
+    };
+
+    window.addEventListener('load', mainFunc);
+    document.addEventListener('turbolinks:load', mainFunc);
 })();
