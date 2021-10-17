@@ -36,9 +36,7 @@
                         newA.innerText = rankDiv.innerText;
                         rankDiv.innerText = '';
                         rankDiv.appendChild(newA);
-                        rankDiv.setAttribute('data-html-title', 'Show ' + data[0] + ' ranking page around this user');
-                        rankDiv.setAttribute('data-hasqtip', 'qtip-1');
-                        rankDiv.setAttribute('aria-describedby', 'qtip-1');
+                        rankDiv.setAttribute('title', 'Show ' + data[0] + ' ranking page around this user');
                     }
                 });
             }
