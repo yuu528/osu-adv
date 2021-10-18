@@ -7,6 +7,7 @@
 // @match        https://osu.ppy.sh/*
 // @icon         https://www.google.com/s2/favicons?domain=osu.ppy.sh
 // @require      https://gist.github.com/raw/2625891/waitForKeyElements.js
+// @run-at       document-start
 // ==/UserScript==
 
 (function() {
